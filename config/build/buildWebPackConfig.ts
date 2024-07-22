@@ -16,7 +16,7 @@ export const buildWebPackConfig = (
     mode,
     entry: paths.entry,
     module: {
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     resolve: buildResolvers(),
     output: {
