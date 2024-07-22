@@ -1,12 +1,11 @@
 import "./style/index.scss";
 
+import { useTheme } from "app/Providers/ThemeProvider";
+import { AboutPage } from "pages/AboutPage";
+import { MainPage } from "pages/MainPage";
 import { FC, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-
-import { classNames } from "./healpers/classNames";
-import { AboutPageAsync } from "./pages/AboutPage/AboutPage.async";
-import { MainPageAsync } from "./pages/MainPage/MainPage.async";
-import { useTheme } from "./theme/useTheme";
+import { classNames } from "shared/lib/classNames/classNames";
 
 export const App: FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -18,8 +17,8 @@ export const App: FC = () => {
 
       <Suspense>
         <Routes>
-          <Route path="/" element={<MainPageAsync />} />
-          <Route path="/about" element={<AboutPageAsync />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </Suspense>
     </div>
