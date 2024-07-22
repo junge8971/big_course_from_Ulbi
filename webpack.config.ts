@@ -3,21 +3,26 @@ import path from "path";
 import webpack from "webpack";
 
 import { buildWebPackConfig } from "./config/build/buildWebPackConfig";
-import { BuildPaths } from "./config/build/types/config";
+import { BuildEnv, BuildPaths } from "./config/build/types/config";
 
-const mode = "development";
-const isDev = mode === "development";
+export default (env: BuildEnv) => {
+  const mode = env.mode || "development";
+  const isDev = mode === "development";
 
-const paths: BuildPaths = {
-  entry: path.resolve(__dirname, "src", "index.ts"),
-  build: path.resolve(__dirname, "dist"),
-  html: path.resolve(__dirname, "public", "index.html"),
+  const port = env.port || 3000;
+
+  const paths: BuildPaths = {
+    entry: path.resolve(__dirname, "src", "index.ts"),
+    build: path.resolve(__dirname, "dist"),
+    html: path.resolve(__dirname, "public", "index.html"),
+  };
+
+  const config: webpack.Configuration = buildWebPackConfig({
+    mode,
+    paths,
+    isDev,
+    port,
+  });
+
+  return config;
 };
-
-const config: webpack.Configuration = buildWebPackConfig({
-  mode,
-  paths,
-  isDev,
-});
-
-export default config;
