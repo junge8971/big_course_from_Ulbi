@@ -7,11 +7,9 @@ import { classNames } from "shared/lib/classNames/classNames";
 import { Navbar } from "widgets/Navbar/ui/Navbar";
 
 export const App: FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   return (
     <div className={classNames("app", [theme], {})}>
-      <button onClick={toggleTheme}>Сменить тему</button>
-
       <Navbar />
       <AppRouter />
     </div>
