@@ -1,10 +1,9 @@
 import "./style/index.scss";
 
+import { AppRouter } from "app/Providers/router";
 import { useTheme } from "app/Providers/ThemeProvider";
-import { AboutPage } from "pages/AboutPage";
-import { MainPage } from "pages/MainPage";
-import { FC, Suspense } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { FC } from "react";
+import { Link } from "react-router-dom";
 import { classNames } from "shared/lib/classNames/classNames";
 
 export const App: FC = () => {
@@ -15,12 +14,7 @@ export const App: FC = () => {
       <Link to="/">Главная</Link>
       <Link to="/about">О нас</Link>
 
-      <Suspense>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </Suspense>
+      <AppRouter />
     </div>
   );
 };
