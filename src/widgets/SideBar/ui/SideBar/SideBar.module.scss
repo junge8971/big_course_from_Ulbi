@@ -5,15 +5,22 @@
   position: relative;
   transition: width 0.3s;
 
-  &.open {
-    width: var(--sidebar-width-open);
-  }
-
   .switches {
     position: absolute;
     bottom: 20px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
+  }
+
+  &.open {
+    width: var(--sidebar-width-open);
+    .switches {
+      flex-direction: row;
+      .lang {
+        margin-left: 20px;
+      }
+    }
   }
 }

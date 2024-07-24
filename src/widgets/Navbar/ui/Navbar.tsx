@@ -1,4 +1,5 @@
 import { FC, memo } from "react";
+import { useTranslation } from "react-i18next";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { classNames } from "shared/lib/classNames/classNames";
 import { AppLink } from "shared/ui/AppLink/AppLink";
@@ -10,11 +11,12 @@ interface NavbarComponentProps {
 }
 
 const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
+  const { t, i18n } = useTranslation();
   return (
     <div className={classNames(cls.navbar, [className], {})}>
       <div className={cls.links}>
-        <AppLink to={RoutePath.main}>Главная</AppLink>
-        <AppLink to={RoutePath.about}>О нас</AppLink>
+        <AppLink to={RoutePath.main}>{t("Главная")}</AppLink>
+        <AppLink to={RoutePath.about}>{t("О нас")}</AppLink>
       </div>
     </div>
   );
