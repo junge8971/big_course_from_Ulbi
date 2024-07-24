@@ -4,6 +4,18 @@ import webpack from "webpack";
 import { BuildOptions } from "./types/config";
 
 export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
+  const babelLoader = {
+    test: /\.m?(js|ts|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ["@babel/preset-env"],
+        plugins: ["i18next-extract"],
+      },
+    },
+  };
+
   const fileLoader = {
     test: /\.(png|jpe?g|gif|woff2|wof)$/i,
     use: [
@@ -44,5 +56,5 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
       "sass-loader",
     ],
   };
-  return [typescriptLoader, cssLoader, svgLoader, fileLoader];
+  return [babelLoader, typescriptLoader, cssLoader, svgLoader, fileLoader];
 };
