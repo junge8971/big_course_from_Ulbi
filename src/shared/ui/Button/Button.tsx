@@ -1,10 +1,12 @@
-import { ButtonHTMLAttributes, FC, ReactNode, memo } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
+import {
+  ButtonHTMLAttributes, FC, ReactNode, memo,
+} from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
 
-import cls from "./Button.module.scss";
+import cls from './Button.module.scss';
 
 export enum ThemeButton {
-  clear = "clear",
+  clear = 'clear',
 }
 
 interface ButtonComponentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,15 +20,13 @@ const ButtonComponent: FC<ButtonComponentProps> = ({
   children,
   theme = ThemeButton.clear,
   ...props
-}) => {
-  return (
-    <button
-      className={classNames(cls.button, [className, cls[theme]], {})}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+}) => (
+  <button
+    className={classNames(cls.button, [className, cls[theme]], {})}
+    {...props}
+  >
+    {children}
+  </button>
+);
 
 export const Button = memo(ButtonComponent);
