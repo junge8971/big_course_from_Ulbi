@@ -7,7 +7,7 @@ import { BuildPaths } from './types/config';
 
 export const buildPlugins = (
   paths: BuildPaths,
-  isDev: boolean
+  isDev: boolean,
 ): webpack.WebpackPluginInstance[] => [
   new webpack.ProgressPlugin(),
   new HtmlWebpackPlugin({

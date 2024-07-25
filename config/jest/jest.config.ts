@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
@@ -21,6 +22,11 @@ export default {
   moduleDirectories: ['node_modules'],
   testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
   rootDir: '../../',
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+  modulePaths: ['<rootDir>src'],
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+  },
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
 

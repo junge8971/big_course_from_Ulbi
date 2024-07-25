@@ -10,11 +10,15 @@
       "allowJs": true,
       "moduleResolution": "node",
       "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "types": ["jest","@testing-library/jest-dom"],
     },
     "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "include": [
+    "./config/jest/setupTests.ts"
+  ],
   }
