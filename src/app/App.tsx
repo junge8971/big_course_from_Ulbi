@@ -9,7 +9,6 @@ import { SideBar } from 'widgets/SideBar';
 
 export const App: FC = () => {
   const { theme } = useTheme();
-
   return (
     <div className={classNames('app', [theme], {})}>
       <Navbar />
