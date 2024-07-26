@@ -21,7 +21,7 @@ const AppLinkComponent: FC<AppLinkComponentProps> = ({
   children,
   ...props
 }) => (
-  <Link className={classNames(cls.AppLink, [className], {})} {...props}>
+  <Link className={classNames(cls.AppLink, [className, cls[theme]], {})} {...props}>
     {children}
   </Link>
 );
