@@ -1,26 +1,21 @@
 import { FC, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import AboutPageIcon from 'shared/assets/icons/aboutPageIcon.svg';
+import MainPageIcon from 'shared/assets/icons/homePageIcon.svg';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LanguageSwitcher } from 'shared/ui/LanguageSwitcher';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 
 import cls from './SideBar.module.scss';
 
-export enum buttonType {
-  button = 'button',
-  reset = 'reset',
-  submit = 'submit',
-}
-
 interface SideBarComponentProps {
   className?: string;
-  type?: buttonType;
 }
 
-const SideBarComponent: FC<SideBarComponentProps> = ({
-  className,
-  type = buttonType.button,
-}) => {
+const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
   const [sideBarOpenStatus, setSideBarOpenStatus] = useState(false);
   const { t } = useTranslation();
 
@@ -32,9 +27,27 @@ const SideBarComponent: FC<SideBarComponentProps> = ({
         [cls.open]: sideBarOpenStatus,
       })}
     >
-      <button type={type} onClick={toggleSidebar}>
-        {t('дерг')}
-      </button>
+      <Button
+        theme={ButtonTheme.backgroundInverted}
+        onClick={toggleSidebar}
+        className={cls.toggleButton}
+        square
+        size={ButtonSize.xl}
+      >
+        {sideBarOpenStatus ? '<' : '>'}
+      </Button>
+
+      <div className={cls.items}>
+        <AppLink className={cls.item} to={RoutePath.main}>
+          <MainPageIcon className={cls.icon} />
+          <span className={cls.link}>{t('Главная')}</span>
+        </AppLink>
+        <AppLink to={RoutePath.about} className={cls.item}>
+          <AboutPageIcon className={cls.icon} />
+          <span className={cls.link}>{t('О нас')}</span>
+        </AppLink>
+      </div>
+
       <div className={cls.switches}>
         <ThemeSwitcher />
         <LanguageSwitcher className={cls.lang} />
