@@ -1,8 +1,10 @@
-import { FC, memo } from 'react';
+import {
+  FC, memo, useCallback, useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Modal } from 'shared/ui/Modal/Modal';
 
 import cls from './Navbar.module.scss';
 
@@ -11,12 +13,23 @@ interface NavbarComponentProps {
 }
 
 const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const [isAuthModal, setIsAuthModal] = useState(false);
+
+  const toggleModal = useCallback(() => {
+    setIsAuthModal((prev) => !prev);
+  }, []);
+
   return (
     <div className={classNames(cls.navbar, [className], {})}>
       <div className={cls.links}>
-        <AppLink to={RoutePath.main}>{t('Главная')}</AppLink>
-        <AppLink to={RoutePath.about}>{t('О нас')}</AppLink>
+        <Button theme={ButtonTheme.outline} onClick={toggleModal}>
+          {t('Войти')}
+        </Button>
+        <Modal isOpen={isAuthModal} onClose={toggleModal}>
+          {t('Войти')}
+        </Modal>
+        <Button>{t('Зарегестрироватся')}</Button>
       </div>
     </div>
   );
