@@ -41,6 +41,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'arrow-body-style': 'off',
+    'no-param-reassign': 'off',
   },
   globals: {
     __IS_DEV__: true,
