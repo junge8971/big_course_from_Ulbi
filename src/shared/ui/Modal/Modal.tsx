@@ -11,11 +11,17 @@ interface ModalComponentProps {
   children: ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  lazy?: boolean;
 }
 
 const ModalComponent: FC<ModalComponentProps> = ({
-  className, children, isOpen, onClose,
+  className,
+  children,
+  isOpen,
+  onClose,
+  lazy,
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -51,6 +57,15 @@ const ModalComponent: FC<ModalComponentProps> = ({
     };
   }, [isOpen, onKeyDown]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
+
+  if (lazy && !isMounted) {
+    return null;
+  }
   return (
     <Portal>
       <div
