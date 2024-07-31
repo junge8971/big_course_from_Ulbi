@@ -2,7 +2,7 @@ import { storeDecorator } from 'shared/config/storybook/storeDecorator/storeDeco
 import type { Meta, StoryFn } from '@storybook/react';
 import { styleDecorator } from 'shared/config/storybook/styleDecorator/styleDecorator';
 import { Theme } from 'app/Providers/ThemeProvider';
-import { LoginForm } from './LoginForm';
+import LoginForm from './LoginForm';
 
 const meta = {
   title: 'feature/LoginForm',
@@ -20,6 +20,7 @@ const Template: StoryFn<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
 export const PrimaryLight = Template.bind({});
 PrimaryLight.decorators = [
+  // @ts-ignore
   storeDecorator({
     login: { username: 'test', password: 'test', isLoading: false },
   }),
@@ -28,6 +29,7 @@ PrimaryLight.decorators = [
 export const PrimaryDark = Template.bind({});
 PrimaryDark.decorators = [
   styleDecorator(Theme.dark),
+  // @ts-ignore
   storeDecorator({
     login: { username: 'test', password: 'test', isLoading: false },
   }),
@@ -35,15 +37,20 @@ PrimaryDark.decorators = [
 
 export const WithError = Template.bind({});
 WithError.decorators = [
+  // @ts-ignore
   storeDecorator({
     login: {
-      username: 'test', password: 'test', isLoading: false, error: 'error',
+      username: 'test',
+      password: 'test',
+      isLoading: false,
+      error: 'error',
     },
   }),
 ];
 
 export const IsLoading = Template.bind({});
 IsLoading.decorators = [
+  // @ts-ignore
   storeDecorator({
     login: { username: 'test', password: 'test', isLoading: true },
   }),

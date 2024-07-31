@@ -41,13 +41,13 @@ OnlyText.args = {
 };
 
 export const OnlyTitleDark = Template.bind({});
-OnlyTitle.args = {
+OnlyTitleDark.args = {
   title: 'title',
 };
 OnlyTitleDark.decorators = [styleDecorator(Theme.dark)];
 
 export const OnlyTextDark = Template.bind({});
-OnlyText.args = {
+OnlyTextDark.args = {
   text: 'text',
 };
 OnlyTextDark.decorators = [styleDecorator(Theme.dark)];

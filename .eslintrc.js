@@ -1,3 +1,5 @@
+const { off } = require('process');
+
 module.exports = {
   env: {
     browser: true,
@@ -42,6 +44,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error',
     'arrow-body-style': 'off',
     'no-param-reassign': 'off',
+    'consistent-return': 'off',
   },
   globals: {
     __IS_DEV__: true,
