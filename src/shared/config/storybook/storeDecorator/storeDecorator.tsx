@@ -8,15 +8,14 @@ const defaultAsyncReducers: Partial<ReducersMapObject<StateSchema>> = {
   login: loginReducer,
 };
 
-export const storeDecorator =
-  (initialState: StateSchema, asyncReducers?: Partial<ReducersMapObject<StateSchema>>) =>
-  (Story: StoryFn) => {
-    return (
-      <StoreProvider
-        initialState={initialState}
-        asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}
-      >
-        <Story />
-      </StoreProvider>
-    );
-  };
+// eslint-disable-next-line max-len
+export const storeDecorator = (initialState: StateSchema, asyncReducers?: Partial<ReducersMapObject<StateSchema>>) => (Story: StoryFn) => {
+  return (
+    <StoreProvider
+      initialState={initialState}
+      asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}
+    >
+      <Story />
+    </StoreProvider>
+  );
+};
