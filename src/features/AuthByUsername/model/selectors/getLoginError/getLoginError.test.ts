@@ -12,7 +12,9 @@ describe('getLoginError', () => {
 
   test('should return test', () => {
     const state: Partial<StateSchema> = {
-      login: { username: 'test', password: 'test', isLoading: false, error: 'test' },
+      login: {
+        username: 'test', password: 'test', isLoading: false, error: 'test',
+      },
     };
     expect(getLoginError(state as StateSchema)).toEqual('test');
   });

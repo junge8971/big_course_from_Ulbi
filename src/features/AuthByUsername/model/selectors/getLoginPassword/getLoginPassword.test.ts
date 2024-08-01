@@ -5,7 +5,9 @@ import { getLoginPassword } from './getLoginPassword';
 describe('getLoginPassword', () => {
   test('should return test', () => {
     const state: Partial<StateSchema> = {
-      login: { username: 'test', password: 'test', isLoading: true, error: 'test' },
+      login: {
+        username: 'test', password: 'test', isLoading: true, error: 'test',
+      },
     };
     expect(getLoginPassword(state as StateSchema)).toEqual('test');
   });
