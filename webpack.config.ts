@@ -18,11 +18,14 @@ export default (env: BuildEnv) => {
     src: path.resolve(__dirname, 'src'),
   };
 
+  const apiUrl = env.apiUrl || 'http://localhost:8000/';
+
   const config: webpack.Configuration = buildWebPackConfig({
     mode,
     paths,
     isDev,
     port,
+    apiUrl,
   });
 
   return config;

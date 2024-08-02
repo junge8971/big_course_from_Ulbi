@@ -5,4 +5,6 @@ export {
   ReduxStoreWithReducerManager,
   StateSchemaKey,
   AppDispatch,
+  ThunkExtraArgs,
+  ThunkConfig,
 } from './config/StateSchema';

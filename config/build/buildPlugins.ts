@@ -8,6 +8,7 @@ import { BuildPaths } from './types/config';
 export const buildPlugins = (
   paths: BuildPaths,
   isDev: boolean,
+  apiUrl: string,
 ): webpack.WebpackPluginInstance[] => {
   const plugins = [
     new webpack.ProgressPlugin(),
@@ -20,6 +21,7 @@ export const buildPlugins = (
     }),
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
     }),
   ];
 

@@ -6,10 +6,10 @@ import { buildPlugins } from './buildPlugins';
 import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
-export const buildWebPackConfig = (
-  options: BuildOptions,
-): webpack.Configuration => {
-  const { mode, paths, isDev } = options;
+export const buildWebPackConfig = (options: BuildOptions): webpack.Configuration => {
+  const {
+    mode, paths, isDev, apiUrl,
+  } = options;
   return {
     mode,
     entry: paths.entry,
@@ -22,7 +22,7 @@ export const buildWebPackConfig = (
       path: paths.build,
       clean: true,
     },
-    plugins: buildPlugins(paths, isDev),
+    plugins: buildPlugins(paths, isDev, apiUrl),
     devtool: isDev ? 'inline-source-map' : undefined,
     devServer: isDev ? buildDevServer(options) : undefined,
   };
