@@ -1,0 +1,21 @@
+.item {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &.open {
+    .link {
+      opacity: 1 !important;
+    }
+  }
+
+  .icon {
+    fill: var(--primary-color);
+    overflow: visible;
+  }
+  .link {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+}

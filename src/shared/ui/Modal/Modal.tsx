@@ -14,12 +14,8 @@ interface ModalComponentProps {
   lazy?: boolean;
 }
 
-const ModalComponent: FC<ModalComponentProps> = ({
-  className,
-  children,
-  isOpen,
-  onClose,
-  lazy,
+export const Modal: FC<ModalComponentProps> = ({
+  className, children, isOpen, onClose, lazy,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -83,5 +79,3 @@ const ModalComponent: FC<ModalComponentProps> = ({
     </Portal>
   );
 };
-
-export const Modal = memo(ModalComponent);

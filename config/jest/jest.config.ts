@@ -28,7 +28,7 @@ export default {
     '\\.s?css$': 'identity-obj-proxy',
   },
 
-  global: {
+  globals: {
     __IS_DEV__: true,
   },
   // Indicates whether the coverage information should be collected while executing the test

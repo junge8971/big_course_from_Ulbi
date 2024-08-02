@@ -5,18 +5,11 @@
   position: relative;
   transition: width 0.3s;
 
-  &.open {
-    width: var(--sidebar-width-open);
-    .switches {
-      flex-direction: row;
-      .lang {
-        margin-left: 20px;
-      }
-    }
-
-    .link {
-      opacity: 1 !important;
-    }
+  .items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
 
   .switches {
@@ -35,25 +28,12 @@
     bottom: 10px;
   }
 
-  .items {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-    .item {
-      padding-left: 20px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-
-      .icon {
-        fill: var(--primary-color);
-        overflow: visible;
-      }
-      .link {
-        opacity: 0;
-        transition: opacity 0.3s;
+  &.open {
+    width: var(--sidebar-width-open);
+    .switches {
+      flex-direction: row;
+      .lang {
+        margin-left: 20px;
       }
     }
   }

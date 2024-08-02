@@ -1,14 +1,11 @@
 import { FC, memo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import AboutPageIcon from 'shared/assets/icons/aboutPageIcon.svg';
-import MainPageIcon from 'shared/assets/icons/homePageIcon.svg';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LanguageSwitcher } from 'shared/ui/LanguageSwitcher';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 
+import { SideBarItemsList } from '../../model/items';
+import { SideBarItem } from '../SideBarItem/SideBarItem';
 import cls from './SideBar.module.scss';
 
 interface SideBarComponentProps {
@@ -17,7 +14,6 @@ interface SideBarComponentProps {
 
 const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
   const [sideBarOpenStatus, setSideBarOpenStatus] = useState(false);
-  const { t } = useTranslation();
 
   const toggleSidebar = () => setSideBarOpenStatus((prev) => !prev);
 
@@ -38,14 +34,9 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
       </Button>
 
       <div className={cls.items}>
-        <AppLink className={cls.item} to={RoutePath.main}>
-          <MainPageIcon className={cls.icon} />
-          <span className={cls.link}>{t('Главная')}</span>
-        </AppLink>
-        <AppLink to={RoutePath.about} className={cls.item}>
-          <AboutPageIcon className={cls.icon} />
-          <span className={cls.link}>{t('О нас')}</span>
-        </AppLink>
+        {SideBarItemsList.map((item) => (
+          <SideBarItem key={item.path} item={item} isOpen={sideBarOpenStatus} />
+        ))}
       </div>
 
       <div className={cls.switches}>

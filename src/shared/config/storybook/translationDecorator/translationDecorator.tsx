@@ -4,9 +4,9 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from 'shared/config/i18n/i18nForTests';
 
 export const translationDecorator = (Story: StoryFn) => (
-  <I18nextProvider i18n={i18n}>
-    <Suspense>
+  <Suspense>
+    <I18nextProvider i18n={i18n}>
       <Story />
-    </Suspense>
-  </I18nextProvider>
+    </I18nextProvider>
+  </Suspense>
 );

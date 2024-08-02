@@ -1,4 +1,3 @@
-import { useAppDispatch } from 'app/Providers/StoreProvider';
 import { getUserAuthData, userActions } from 'entity/User';
 import { LoginModal } from 'features/AuthByUsername';
 import {
@@ -7,6 +6,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 
 import cls from './Navbar.module.scss';

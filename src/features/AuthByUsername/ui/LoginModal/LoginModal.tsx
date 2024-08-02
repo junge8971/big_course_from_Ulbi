@@ -20,7 +20,7 @@ const LoginModalComponent: FC<LoginModalComponentProps> = ({ className, isOpen, 
       className={classNames(cls.loginModal, [className])}
     >
       <Suspense>
-        <LoginFormAsync />
+        <LoginFormAsync onSuccess={onClose} />
       </Suspense>
     </Modal>
   );
