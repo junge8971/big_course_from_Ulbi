@@ -6,7 +6,10 @@ describe('getLoginUsername', () => {
   test('should return test', () => {
     const state: Partial<StateSchema> = {
       login: {
-        username: 'test', password: 'test', isLoading: true, error: 'test',
+        username: 'test',
+        password: 'test',
+        isLoading: true,
+        error: 'test',
       },
     };
     expect(getLoginUsername(state as StateSchema)).toEqual('test');
@@ -14,6 +17,6 @@ describe('getLoginUsername', () => {
 
   test('empty state', () => {
     const state: Partial<StateSchema> = {};
-    expect(getLoginUsername(state as StateSchema)).toEqual(undefined);
+    expect(getLoginUsername(state as StateSchema)).toEqual('');
   });
 });

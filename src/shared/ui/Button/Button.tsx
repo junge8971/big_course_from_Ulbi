@@ -30,9 +30,9 @@ interface ButtonComponentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const ButtonComponent: FC<ButtonComponentProps> = ({
   className,
   children,
-  theme,
+  theme = ButtonTheme.outline,
   square,
-  size,
+  size = ButtonSize.m,
   disabled,
   ...props
 }) => (

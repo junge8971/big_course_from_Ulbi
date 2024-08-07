@@ -1,5 +1,12 @@
 import {
-  ChangeEvent, FC, InputHTMLAttributes, memo, useEffect, useRef, useState,
+  ChangeEvent,
+  FC,
+  InputHTMLAttributes,
+  MutableRefObject,
+  memo,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 
@@ -22,7 +29,7 @@ const InputComponent: FC<InputComponentProps> = ({
   autofocus,
   ...props
 }) => {
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
   const [isFocused, setIsFocused] = useState(false);
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     onChange?.(event.target.value);

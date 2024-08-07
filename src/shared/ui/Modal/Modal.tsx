@@ -1,5 +1,13 @@
 import {
-  FC, MouseEvent, ReactNode, memo, useCallback, useEffect, useRef, useState,
+  FC,
+  MouseEvent,
+  MutableRefObject,
+  ReactNode,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal/Portal';
@@ -19,7 +27,7 @@ export const Modal: FC<ModalComponentProps> = ({
 }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const timeRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeRef = useRef(null) as unknown as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const closeHandler = useCallback(() => {
     if (onClose) {

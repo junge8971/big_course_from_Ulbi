@@ -1,14 +1,7 @@
-import { Dispatch } from '@reduxjs/toolkit';
-import { StateSchema } from 'app/Providers/StoreProvider';
-import axios from 'axios';
 import { userActions } from 'entity/User';
 import { TestAsyncThunk } from 'shared/lib/test/TestAsyncThunk/TestAsyncThunk';
 
-import { loginByUsername, loginByUsernameProps } from './loginByUsername';
-
-jest.mock('axios');
-
-const mockedAxios = jest.mocked(axios);
+import { loginByUsername } from './loginByUsername';
 
 describe('loginByUsername', () => {
   // Без переиспользуемого функционала
@@ -43,24 +36,24 @@ describe('loginByUsername', () => {
 
   test('success login', async () => {
     const userData = { username: 'username', id: '1' };
-    mockedAxios.post.mockReturnValue(Promise.resolve({ data: userData }));
 
     const thunk = new TestAsyncThunk(loginByUsername);
+    thunk.api.post.mockReturnValue(Promise.resolve({ data: userData }));
+
     const result = await thunk.callThunk({ username: 'username', password: 'password' });
 
-    expect(mockedAxios.post).toHaveBeenCalled();
+    expect(thunk.api.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('fulfilled');
     expect(result.payload).toEqual(userData);
     expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userData));
     expect(thunk.dispatch).toHaveBeenCalledTimes(3);
   });
   test('error login', async () => {
-    mockedAxios.post.mockReturnValue(Promise.reject());
-
     const thunk = new TestAsyncThunk(loginByUsername);
+    thunk.api.post.mockReturnValue(Promise.reject());
     const result = await thunk.callThunk({ username: 'username', password: 'password' });
 
-    expect(mockedAxios.post).toHaveBeenCalled();
+    expect(thunk.api.post).toHaveBeenCalled();
     expect(result.meta.requestStatus).toBe('rejected');
     expect(result.payload).toBe('error');
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);

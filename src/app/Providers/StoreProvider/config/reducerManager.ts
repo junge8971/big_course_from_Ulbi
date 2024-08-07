@@ -1,7 +1,8 @@
-/* eslint-disable no-restricted-syntax */
-
 import {
-  Action, Reducer, ReducersMapObject, combineReducers,
+  Action,
+  Reducer,
+  ReducersMapObject,
+  combineReducers,
 } from '@reduxjs/toolkit';
 
 import { ReducerManager, StateSchema, StateSchemaKey } from './StateSchema';
@@ -18,7 +19,7 @@ export const createReducerManager = (
   return {
     getReducerMap: () => reducers,
 
-    reduce: (state: StateSchema, action: Action) => {
+    reduce: (state, action: Action) => {
       if (keysToRemove.length > 0) {
         state = { ...state };
         keysToRemove.forEach((key) => {

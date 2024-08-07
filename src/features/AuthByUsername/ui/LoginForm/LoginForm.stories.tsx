@@ -20,7 +20,6 @@ const Template: StoryFn<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
 export const PrimaryLight = Template.bind({});
 PrimaryLight.decorators = [
-  // @ts-ignore
   storeDecorator({
     login: { username: 'test', password: 'test', isLoading: false },
   }),
@@ -29,7 +28,6 @@ PrimaryLight.decorators = [
 export const PrimaryDark = Template.bind({});
 PrimaryDark.decorators = [
   styleDecorator(Theme.dark),
-  // @ts-ignore
   storeDecorator({
     login: { username: 'test', password: 'test', isLoading: false },
   }),
@@ -37,7 +35,6 @@ PrimaryDark.decorators = [
 
 export const WithError = Template.bind({});
 WithError.decorators = [
-  // @ts-ignore
   storeDecorator({
     login: {
       username: 'test',
@@ -50,7 +47,6 @@ WithError.decorators = [
 
 export const IsLoading = Template.bind({});
 IsLoading.decorators = [
-  // @ts-ignore
   storeDecorator({
     login: { username: 'test', password: 'test', isLoading: true },
   }),

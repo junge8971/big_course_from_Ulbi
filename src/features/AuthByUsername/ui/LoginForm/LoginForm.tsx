@@ -67,7 +67,7 @@ const LoginFormComponent: FC<LoginFormComponentProps> = ({ className, onSuccess 
         <Button className={cls.loginButton} onClick={onLoginClick} disabled={isLoading}>
           {t('Войти')}
         </Button>
-        <Text theme={TextTheme.error} text={t(error)} />
+        {error && <Text theme={TextTheme.error} text={t('Неверный логин или пароль')} />}
       </div>
     </DynamicModuleLoader>
   );

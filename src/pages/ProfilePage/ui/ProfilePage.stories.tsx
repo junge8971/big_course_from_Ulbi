@@ -13,12 +13,10 @@ export default {
   },
 } as Meta<typeof ProfilePage>;
 
-const Template: StoryFn<typeof ProfilePage> = (args) => <ProfilePage {...args} />;
+const Template: StoryFn<typeof ProfilePage> = (args) => <ProfilePage />;
 
 export const Normal = Template.bind({});
-Normal.args = {};
 Normal.decorators = [storeDecorator({})];
 
 export const Dark = Template.bind({});
-Dark.args = {};
 Dark.decorators = [styleDecorator(Theme.dark), storeDecorator({})];

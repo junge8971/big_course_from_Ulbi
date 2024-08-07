@@ -1,5 +1,9 @@
 import {
-  Action, EnhancedStore, Reducer, ReducersMapObject,
+  Action,
+  EnhancedStore,
+  PreloadedStateShapeFromReducersMapObject,
+  Reducer,
+  ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { counterSchema } from 'entity/Counter';
@@ -36,7 +40,7 @@ export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
 
 export interface ThunkExtraArgs {
   api: AxiosInstance;
-  navigate: (to: To, options?: NavigateOptions) => void;
+  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {

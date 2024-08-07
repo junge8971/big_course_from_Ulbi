@@ -13,12 +13,10 @@ export default {
   },
 } as Meta<typeof NotFoundPage>;
 
-const Template: StoryFn<typeof NotFoundPage> = (args) => <NotFoundPage {...args} />;
+const Template: StoryFn<typeof NotFoundPage> = (args) => <NotFoundPage />;
 
 export const Normal = Template.bind({});
-Normal.args = {};
 Normal.decorators = [storeDecorator({})];
 
 export const Dark = Template.bind({});
-Dark.args = {};
 Dark.decorators = [styleDecorator(Theme.dark), storeDecorator({})];
