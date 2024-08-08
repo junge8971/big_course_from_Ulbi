@@ -9,7 +9,7 @@ import { Text } from 'shared/ui/Text/Text';
 
 import cls from './ProfilePageHeader.module.scss';
 
-const ProfilePageHeaderComponent: FC<ProfilePageHeaderComponentProps> = () => {
+const ProfilePageHeaderComponent: FC = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
