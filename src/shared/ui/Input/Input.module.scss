@@ -2,5 +2,9 @@
   color: var(--primary-color);
   .input {
     width: 100%;
+
+    &.readOnly {
+      opacity: 0.5;
+    }
   }
 }

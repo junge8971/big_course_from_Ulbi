@@ -1,0 +1,14 @@
+.profilePageHeader {
+  margin-bottom: 20px;
+  .header {
+    display: flex;
+    justify-content: center;
+
+    .editButton {
+      margin-left: auto;
+      margin-right: 10px;
+    }
+    .saveButton {
+    }
+  }
+}

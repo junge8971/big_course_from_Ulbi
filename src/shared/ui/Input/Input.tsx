@@ -12,12 +12,16 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+type HTMLInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'value' | 'onChange' | 'readonly'
+>;
 interface InputComponentProps extends HTMLInputProps {
   className?: string;
-  value?: string;
+  value?: string | number;
   onChange?: (value: string) => void;
   autofocus?: boolean;
+  readOnly?: boolean;
 }
 
 const InputComponent: FC<InputComponentProps> = ({
@@ -27,6 +31,7 @@ const InputComponent: FC<InputComponentProps> = ({
   type = 'text',
   placeholder,
   autofocus,
+  readOnly,
   ...props
 }) => {
   const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
@@ -50,7 +55,8 @@ const InputComponent: FC<InputComponentProps> = ({
         type={type}
         value={value}
         onChange={onChangeHandler}
-        className={classNames(cls.input)}
+        className={classNames(cls.input, [], { [cls.readOnly]: readOnly })}
+        readOnly={readOnly}
         {...props}
       />
     </div>

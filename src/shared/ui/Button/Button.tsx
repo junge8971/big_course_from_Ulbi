@@ -8,6 +8,7 @@ import cls from './Button.module.scss';
 export enum ButtonTheme {
   clear = 'clear',
   outline = 'outline',
+  outlineRed = 'outlineRed',
   background = 'backgroundInverted',
   backgroundInverted = 'backgroundInverted',
 }
