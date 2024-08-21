@@ -27,7 +27,7 @@ export const buildPlugins = (options: BuildOptions): webpack.WebpackPluginInstan
       new webpack.HotModuleReplacementPlugin(),
       new BundleAnalyzerPlugin({
         openAnalyzer: false,
-      })
+      }),
     );
   }
 

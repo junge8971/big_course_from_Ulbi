@@ -7,7 +7,9 @@ import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/config';
 
 export const buildWebPackConfig = (options: BuildOptions): webpack.Configuration => {
-  const { mode, paths, isDev, apiUrl } = options;
+  const {
+    mode, paths, isDev, apiUrl,
+  } = options;
   return {
     mode,
     entry: paths.entry,
