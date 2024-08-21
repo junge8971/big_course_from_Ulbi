@@ -28,22 +28,24 @@ export const profileSlice = createSlice({
     cancelEdit: (state) => {
       state.readonly = true;
       state.form = state.data;
+      state.validateProfileError = undefined;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProfileData.pending, (state) => {
-        state.error = undefined;
+        state.validateProfileError = undefined;
         state.isLoading = true;
       })
       .addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
         state.data = action.payload;
         state.form = action.payload;
         state.isLoading = false;
+        state.validateProfileError = undefined;
       })
       .addCase(fetchProfileData.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.validateProfileError = action.payload;
       })
 
       .addCase(updateProfileData.pending, (state) => {
@@ -55,10 +57,11 @@ export const profileSlice = createSlice({
         state.form = action.payload;
         state.isLoading = false;
         state.readonly = true;
+        state.validateProfileError = undefined;
       })
       .addCase(updateProfileData.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.validateProfileError = action.payload;
       });
   },
 });

@@ -7,12 +7,12 @@ import {
   getProfileForm,
   getProfileIsLoading,
   getProfileReadOnly,
+  getValidateProfileError,
   profileActions,
   profileReducer,
 } from 'entity/Profile';
-import {
-  FC, memo, useCallback, useEffect,
-} from 'react';
+import { ValidateProfileError } from 'entity/Profile/';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
@@ -21,6 +21,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { regexForNumberInString } from 'shared/regex/common';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
@@ -39,28 +40,39 @@ const ProfilePageComponent: FC<ProfilePageComponentProps> = ({ className }) => {
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const readOnly = useSelector(getProfileReadOnly);
+  const validationErrors = useSelector(getValidateProfileError);
+
+  const validationErrorsTranslation = {
+    [ValidateProfileError.SERVER_ERROR]: t('Ошибка сервера'),
+    [ValidateProfileError.NO_DATA]: t('Нет данных профиля'),
+    [ValidateProfileError.INCORRECT_PROFILE_DATA]: t('Профиль заполнен неправильно'),
+    [ValidateProfileError.INCORRECT_PROFILE_COUNTY]: t('Страна заполнена неправильно'),
+    [ValidateProfileError.INCORRECT_PROFILE_AGE]: t('Возраст указан неправильно'),
+  };
 
   useEffect(() => {
-    dispatch(fetchProfileData());
+    if (__PROJECT__ !== 'storybook') {
+      dispatch(fetchProfileData());
+    }
   }, [dispatch]);
 
   const onChangeFirstName = useCallback(
     (value: string) => {
       dispatch(profileActions.updateProfile({ first: value }));
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeLastName = useCallback(
     (value: string) => {
       dispatch(profileActions.updateProfile({ lastname: value }));
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeCity = useCallback(
     (value: string) => {
       dispatch(profileActions.updateProfile({ city: value }));
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeAge = useCallback(
     (value: string) => {
@@ -68,36 +80,44 @@ const ProfilePageComponent: FC<ProfilePageComponentProps> = ({ className }) => {
         dispatch(profileActions.updateProfile({ age: Number(value || '0') }));
       }
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeUsername = useCallback(
     (value: string) => {
       dispatch(profileActions.updateProfile({ username: value }));
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeAvatar = useCallback(
     (value: string) => {
       dispatch(profileActions.updateProfile({ avatar: value }));
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeCurrency = useCallback(
     (value: Currency) => {
       dispatch(profileActions.updateProfile({ currency: value }));
     },
-    [dispatch],
+    [dispatch]
   );
   const onChangeCountry = useCallback(
     (value: Country) => {
       dispatch(profileActions.updateProfile({ country: value }));
     },
-    [dispatch],
+    [dispatch]
   );
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <ProfilePageHeader />
+      {validationErrors?.length &&
+        validationErrors.map((error) => (
+          <Text
+            key={error}
+            theme={TextTheme.error}
+            text={validationErrorsTranslation[error]}
+          />
+        ))}
       <ProfileCard
         data={fromData}
         isLoading={isLoading}
