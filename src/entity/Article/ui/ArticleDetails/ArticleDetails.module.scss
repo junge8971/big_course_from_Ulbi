@@ -1,0 +1,26 @@
+.articleDetails {
+  min-height: 100vh;
+
+  .articleInfo {
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    gap: 5px;
+  }
+
+  .avatar {
+    margin: 0 auto;
+  }
+
+  .title {
+    margin-top: 20px;
+  }
+
+  .skeleton {
+    margin-top: 15px;
+  }
+
+  .block {
+    margin-top: 16px;
+  }
+}

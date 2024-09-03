@@ -1,4 +1,6 @@
 import { AboutPage } from 'pages/AboutPage';
+import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
+import { ArticlesPage } from 'pages/ArticlesPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
@@ -12,6 +14,8 @@ export enum AppRoutes {
   main = 'main',
   about = 'about',
   profile = 'profile',
+  articles = 'articles',
+  articleDetails = 'articleDetails',
 
   // lats
   notFound = 'notFound',
@@ -21,6 +25,8 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.main]: '/',
   [AppRoutes.about]: '/about',
   [AppRoutes.profile]: '/profile',
+  [AppRoutes.articles]: '/articles',
+  [AppRoutes.articleDetails]: '/articles/', // + :id
 
   // last
   [AppRoutes.notFound]: '*',
@@ -38,6 +44,16 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.profile]: {
     path: RoutePath.profile,
     element: <ProfilePage />,
+    authOnly: true,
+  },
+  [AppRoutes.articles]: {
+    path: RoutePath.articles,
+    element: <ArticlesPage />,
+    authOnly: true,
+  },
+  [AppRoutes.articleDetails]: {
+    path: `${RoutePath.articleDetails}:id`,
+    element: <ArticleDetailsPage />,
     authOnly: true,
   },
 

@@ -1,11 +1,8 @@
 import {
-  Action,
-  EnhancedStore,
-  PreloadedStateShapeFromReducersMapObject,
-  Reducer,
-  ReducersMapObject,
+  Action, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
+import { articleDetailsSchema } from 'entity/Article';
 import { counterSchema } from 'entity/Counter';
 import { profileSchema } from 'entity/Profile';
 import { userSchema } from 'entity/User';
@@ -21,6 +18,7 @@ export interface StateSchema {
   // async
   login?: loginSchema;
   profile?: profileSchema;
+  articleDetails?: articleDetailsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

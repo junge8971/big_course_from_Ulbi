@@ -21,6 +21,7 @@ export const buildWebPackConfig = (options: BuildOptions): webpack.Configuration
       filename: '[name].[contenthash].bundle.js',
       path: paths.build,
       clean: true,
+      publicPath: '/',
     },
     plugins: buildPlugins(options),
     devtool: isDev ? 'inline-source-map' : undefined,

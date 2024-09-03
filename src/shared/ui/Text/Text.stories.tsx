@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import { styleDecorator } from 'shared/config/storybook/styleDecorator/styleDecorator';
 import { Theme } from 'app/Providers/ThemeProvider';
-import { Text, TextTheme } from './Text';
+import { Text, TextSize, TextTheme } from './Text';
 
 const meta = {
   title: 'ui/Text',
@@ -57,4 +57,11 @@ Error.args = {
   text: 'text',
   title: 'title',
   theme: TextTheme.error,
+};
+
+export const PrimarySizeL = Template.bind({});
+PrimaryLight.args = {
+  text: 'text',
+  title: 'title',
+  size: TextSize.l,
 };
