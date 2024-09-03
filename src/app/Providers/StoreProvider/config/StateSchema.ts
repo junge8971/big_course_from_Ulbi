@@ -7,6 +7,7 @@ import { counterSchema } from 'entity/Counter';
 import { profileSchema } from 'entity/Profile';
 import { userSchema } from 'entity/User';
 import { loginSchema } from 'features/AuthByUsername';
+import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage';
 import { NavigateOptions, To } from 'react-router-dom';
 
 import { createReduxStore } from './store';
@@ -19,6 +20,7 @@ export interface StateSchema {
   login?: loginSchema;
   profile?: profileSchema;
   articleDetails?: articleDetailsSchema;
+  ArticleDetailsComment?: ArticleDetailsCommentSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
