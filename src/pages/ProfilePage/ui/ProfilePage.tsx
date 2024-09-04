@@ -17,6 +17,7 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import {
   DynamicModuleLoader,
   ReducersList,
@@ -35,6 +36,7 @@ interface ProfilePageComponentProps {
 
 const ProfilePageComponent: FC<ProfilePageComponentProps> = ({ className }) => {
   const { t } = useTranslation();
+  const { id } = useParams<{ id: string }>();
 
   const dispatch = useAppDispatch();
 
@@ -54,9 +56,11 @@ const ProfilePageComponent: FC<ProfilePageComponentProps> = ({ className }) => {
 
   useEffect(() => {
     if (__PROJECT__ !== 'storybook') {
-      dispatch(fetchProfileData());
+      if (id) {
+        dispatch(fetchProfileData(id));
+      }
     }
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const onChangeFirstName = useCallback(
     (value: string) => {

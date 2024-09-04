@@ -1,5 +1,7 @@
 import { FC, memo } from 'react';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text } from 'shared/ui/Text/Text';
@@ -10,8 +12,7 @@ import cls from './CommentCard.module.scss';
 interface CommentCardComponentProps {
   className?: string;
   isLoading?: boolean;
-
-  comment: Comment;
+  comment?: Comment;
 }
 
 const CommentCardComponent: FC<CommentCardComponentProps> = ({
@@ -30,12 +31,16 @@ const CommentCardComponent: FC<CommentCardComponentProps> = ({
       </div>
     );
   }
+  if (!comment) {
+    return null;
+  }
+
   return (
     <div className={classNames(cls.commentCard, [className])}>
-      <div className={cls.header}>
+      <AppLink to={`${RoutePath.profile}${comment.user.id}`} className={cls.header}>
         {comment.user.avatar && <Avatar size={30} src={comment.user.avatar} />}
         <Text title={comment.user.username} />
-      </div>
+      </AppLink>
       <Text text={comment.text} className={cls.text} />
     </div>
   );
