@@ -1,10 +1,11 @@
 import { FC, memo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LanguageSwitcher } from 'shared/ui/LanguageSwitcher';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 
-import { SideBarItemsList } from '../../model/items';
+import { getSideBarItem } from '../../model/selectors/getSideBarItem';
 import { SideBarItem } from '../SideBarItem/SideBarItem';
 import cls from './SideBar.module.scss';
 
@@ -14,6 +15,8 @@ interface SideBarComponentProps {
 
 const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
   const [sideBarOpenStatus, setSideBarOpenStatus] = useState(false);
+
+  const sideBarItems = useSelector(getSideBarItem);
 
   const toggleSidebar = () => setSideBarOpenStatus((prev) => !prev);
 
@@ -34,7 +37,7 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
       </Button>
 
       <div className={cls.items}>
-        {SideBarItemsList.map((item) => (
+        {sideBarItems.map((item) => (
           <SideBarItem key={item.path} item={item} isOpen={sideBarOpenStatus} />
         ))}
       </div>
