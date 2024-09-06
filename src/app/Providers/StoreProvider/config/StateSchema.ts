@@ -9,6 +9,7 @@ import { userSchema } from 'entity/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { loginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage';
+import { articlesPageSchema } from 'pages/ArticlesPage';
 import { NavigateOptions, To } from 'react-router-dom';
 
 import { createReduxStore } from './store';
@@ -23,6 +24,7 @@ export interface StateSchema {
   articleDetails?: articleDetailsSchema;
   ArticleDetailsComment?: ArticleDetailsCommentSchema;
   addCommentForm?: AddCommentFormSchema;
+  articlesPage?: articlesPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -55,7 +55,7 @@ const AddCommentFormComponent: FC<AddCommentFormComponentProps> = ({
       <div className={classNames(cls.addCommentForm, [className])}>
         <Input
           placeholder={t('Введите коментарий')}
-          value={formText}
+          value={formText !== undefined ? formText : ''}
           onChange={onChangeCommentText}
           className={cls.input}
         />
