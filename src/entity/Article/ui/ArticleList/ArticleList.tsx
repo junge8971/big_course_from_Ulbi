@@ -7,7 +7,7 @@ import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkele
 import cls from './ArticleList.module.scss';
 
 const getSkeletons = (view: ArticleView) => {
-  return new Array(view === ArticleView.SMALL ? 9 : 3).map((_, index) => (
+  return new Array(view === ArticleView.SMALL ? 9 : 3).fill(0).map((_, index) => (
     // eslint-disable-next-line react/no-array-index-key
     <ArticleListItemSkeleton key={index} view={view} className={cls.card} />
   ));
@@ -35,17 +35,10 @@ const ArticleListComponent: FC<ArticleListComponentProps> = ({
     />
   );
 
-  if (isLoading) {
-    return (
-      <div className={classNames(cls.articleList, [className, cls[view]])}>
-        {getSkeletons(view)}
-      </div>
-    );
-  }
-
   return (
     <div className={classNames(cls.articleList, [className, cls[view]])}>
       {articles.map(renderArticle)}
+      {isLoading && getSkeletons(view)}
     </div>
   );
 };

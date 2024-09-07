@@ -24,6 +24,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { regexForNumberInString } from 'shared/regex/common';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
@@ -115,29 +116,31 @@ const ProfilePageComponent: FC<ProfilePageComponentProps> = ({ className }) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <ProfilePageHeader />
-      {validationErrors?.length
-        && validationErrors.map((error) => (
-          <Text
-            key={error}
-            theme={TextTheme.error}
-            text={validationErrorsTranslation[error]}
-          />
-        ))}
-      <ProfileCard
-        data={fromData}
-        isLoading={isLoading}
-        error={error}
-        onChangeFirstName={onChangeFirstName}
-        onChangeLastName={onChangeLastName}
-        onChangeCity={onChangeCity}
-        onChangeAge={onChangeAge}
-        onChangeUsername={onChangeUsername}
-        onChangeAvatar={onChangeAvatar}
-        onChangeCurrency={onChangeCurrency}
-        onChangeCountry={onChangeCountry}
-        readOnly={readOnly}
-      />
+      <PageWrapper>
+        <ProfilePageHeader />
+        {validationErrors?.length
+          && validationErrors.map((error) => (
+            <Text
+              key={error}
+              theme={TextTheme.error}
+              text={validationErrorsTranslation[error]}
+            />
+          ))}
+        <ProfileCard
+          data={fromData}
+          isLoading={isLoading}
+          error={error}
+          onChangeFirstName={onChangeFirstName}
+          onChangeLastName={onChangeLastName}
+          onChangeCity={onChangeCity}
+          onChangeAge={onChangeAge}
+          onChangeUsername={onChangeUsername}
+          onChangeAvatar={onChangeAvatar}
+          onChangeCurrency={onChangeCurrency}
+          onChangeCountry={onChangeCountry}
+          readOnly={readOnly}
+        />
+      </PageWrapper>
     </DynamicModuleLoader>
   );
 };

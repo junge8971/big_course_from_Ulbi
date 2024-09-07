@@ -1,16 +1,17 @@
 import { Counter } from 'entity/Counter';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 
 const MainPage: FC = () => {
   const { t } = useTranslation();
   return (
-    <div>
+    <PageWrapper>
       {t('Главная')}
       <div>
         <Counter />
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 export default MainPage;

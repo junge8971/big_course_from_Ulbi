@@ -21,7 +21,7 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
   const toggleSidebar = () => setSideBarOpenStatus((prev) => !prev);
 
   return (
-    <div
+    <menu
       className={classNames(cls.sideBar, [className], {
         [cls.open]: sideBarOpenStatus,
       })}
@@ -46,7 +46,7 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
         <ThemeSwitcher />
         <LanguageSwitcher className={cls.lang} />
       </div>
-    </div>
+    </menu>
   );
 };
 

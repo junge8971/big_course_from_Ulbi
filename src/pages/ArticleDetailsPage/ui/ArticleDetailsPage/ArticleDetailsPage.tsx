@@ -13,6 +13,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from 'shared/ui/Button/Button';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { Text } from 'shared/ui/Text/Text';
 
 import { getArticleDetailsCommentIsLoading } from '../../model/selectors/ArticleDetailsCommentSelectors';
@@ -60,13 +61,13 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div className={classNames(cls.article, [className])}>
+      <PageWrapper className={classNames(cls.article, [className])}>
         <Button onClick={onBackToList}>{t('Назад')}</Button>
         <ArticleDetails id={id} />
         <Text className={cls.commentTitle} title={t('Комментарии')} />
         <AddCommentForm onSendComment={onSendComment} />
         <CommentList comments={comments} isLoading={commentsIsLoading} />
-      </div>
+      </PageWrapper>
     </DynamicModuleLoader>
   );
 };

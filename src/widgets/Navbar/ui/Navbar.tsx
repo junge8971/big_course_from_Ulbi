@@ -46,7 +46,7 @@ const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
   }
 
   return (
-    <div className={classNames(cls.navbar, [className], {})}>
+    <header className={classNames(cls.navbar, [className], {})}>
       <div className={cls.links}>
         <Button theme={ButtonTheme.outline} onClick={openModal}>
           {t('Войти')}
@@ -54,7 +54,7 @@ const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
         {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={closeModal} />}
         <Button>{t('Зарегестрироватся')}</Button>
       </div>
-    </div>
+    </header>
   );
 };
 

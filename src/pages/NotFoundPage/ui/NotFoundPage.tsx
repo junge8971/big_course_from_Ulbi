@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 
 import cls from './NotFoundPage.module.scss';
 
@@ -12,7 +13,9 @@ const NotFoundPageComponent: FC<NotFoundPageComponentProps> = ({ className }) =>
   const { t } = useTranslation();
 
   return (
-    <div className={classNames(cls.notFoundPage, [className])}>{t('Страница не найдена')}</div>
+    <PageWrapper className={classNames(cls.notFoundPage, [className])}>
+      {t('Страница не найдена')}
+    </PageWrapper>
   );
 };
 
