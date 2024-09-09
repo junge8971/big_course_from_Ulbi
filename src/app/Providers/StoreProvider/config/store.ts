@@ -1,6 +1,7 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { counterReducer } from 'entity/Counter';
 import { userReducer } from 'entity/User';
+import { uiReducer } from 'features/Ui';
 import { $api } from 'shared/api/api';
 
 import { createReducerManager } from './reducerManager';
@@ -15,6 +16,7 @@ export const createReduxStore = (
 
     counter: counterReducer,
     user: userReducer,
+    ui: uiReducer,
   };
   const reducerManager = createReducerManager(rootReducers);
 

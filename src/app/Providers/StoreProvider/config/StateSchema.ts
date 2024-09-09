@@ -8,6 +8,7 @@ import { profileSchema } from 'entity/Profile';
 import { userSchema } from 'entity/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { loginSchema } from 'features/AuthByUsername';
+import { UiSchema } from 'features/Ui';
 import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage';
 import { articlesPageSchema } from 'pages/ArticlesPage';
 
@@ -16,6 +17,7 @@ import { createReduxStore } from './store';
 export interface StateSchema {
   counter: counterSchema;
   user: userSchema;
+  ui: UiSchema;
 
   // async
   login?: loginSchema;
