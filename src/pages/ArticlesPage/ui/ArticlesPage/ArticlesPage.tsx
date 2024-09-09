@@ -12,8 +12,8 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import { fetchNextArticlesListPage } from '../../model/services/fetchNextArticlesListPage/fetchNextArticlesListPage';
+import { initArticleList } from '../../model/services/initArtilcesList/initArtilcesList';
 import {
   articlesPageActions,
   articlesPageReducer,
@@ -43,16 +43,11 @@ const ArticlesPage: FC<ArticlesPageProps> = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(articlesPageActions.initState());
-    dispatch(
-      fetchArticlesList({
-        page: 1,
-      }),
-    );
+    dispatch(initArticleList());
   }, [dispatch]);
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <PageWrapper onScrollEnd={onLoadNextPage}>
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList articles={articles} isLoading={isLoading} view={view} />

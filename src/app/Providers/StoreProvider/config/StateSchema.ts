@@ -10,7 +10,6 @@ import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { loginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage';
 import { articlesPageSchema } from 'pages/ArticlesPage';
-import { NavigateOptions, To } from 'react-router-dom';
 
 import { createReduxStore } from './store';
 
@@ -44,7 +43,6 @@ export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
 
 export interface ThunkExtraArgs {
   api: AxiosInstance;
-  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {
