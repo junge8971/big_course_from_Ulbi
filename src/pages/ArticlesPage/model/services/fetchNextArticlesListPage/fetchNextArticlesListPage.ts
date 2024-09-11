@@ -23,12 +23,8 @@ export const fetchNextArticlesListPage = createAsyncThunk<void, void, ThunkConfi
     const isLoading = getArticlesPageIsLoading(getState());
 
     if (hasMore && !isLoading) {
-      dispatch(
-        fetchArticlesList({
-          page: pageNumber + 1,
-        }),
-      );
       dispatch(articlesPageActions.setPage(pageNumber + 1));
+      dispatch(fetchArticlesList({}));
     }
   },
 );

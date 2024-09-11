@@ -45,6 +45,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'no-param-reassign': 'off',
     'consistent-return': 'off',
+    'no-undef': 'off',
   },
   globals: {
     __IS_DEV__: true,

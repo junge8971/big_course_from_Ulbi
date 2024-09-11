@@ -29,7 +29,11 @@ const SelectComponent: FC<SelectComponentProps> = ({
 }) => {
   const optionList = useMemo(() => {
     return options?.map((optionElement) => (
-      <option key={optionElement.value} className={cls.option} value={optionElement.value}>
+      <option
+        key={optionElement.value}
+        className={cls.option}
+        value={optionElement.value}
+      >
         {optionElement.content}
       </option>
     ));
@@ -44,7 +48,12 @@ const SelectComponent: FC<SelectComponentProps> = ({
   return (
     <div className={classNames(cls.wrapper, [className])}>
       {label && <div className={cls.label}>{label}</div>}
-      <select value={value} className={cls.select} onChange={onChangeHandler} disabled={readOnly}>
+      <select
+        value={value}
+        className={cls.select}
+        onChange={onChangeHandler}
+        disabled={readOnly}
+      >
         {optionList}
       </select>
     </div>
