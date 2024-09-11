@@ -15,3 +15,8 @@ body {
 .content-page {
   display: flex;
 }
+
+* {
+  scrollbar-color: var(--inverted-primary-color) var(--bg-color);
+  scrollbar-width: thin;
+}

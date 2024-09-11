@@ -9,7 +9,7 @@ import { userSchema } from 'entity/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { loginSchema } from 'features/AuthByUsername';
 import { UiSchema } from 'features/Ui';
-import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage';
+import { articleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { articlesPageSchema } from 'pages/ArticlesPage';
 
 import { createReduxStore } from './store';
@@ -23,7 +23,7 @@ export interface StateSchema {
   login?: loginSchema;
   profile?: profileSchema;
   articleDetails?: articleDetailsSchema;
-  ArticleDetailsComment?: ArticleDetailsCommentSchema;
+  articleDetailsPage?: articleDetailsPageSchema;
   addCommentForm?: AddCommentFormSchema;
   articlesPage?: articlesPageSchema;
 }

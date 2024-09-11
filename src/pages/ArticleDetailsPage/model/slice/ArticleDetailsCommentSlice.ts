@@ -8,10 +8,10 @@ import { ArticleDetailsCommentSchema } from '../types/ArticleDetailsCommentSchem
 const commentsAdapter = createEntityAdapter<Comment>();
 
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
-  (state: StateSchema) => state.ArticleDetailsComment || commentsAdapter.getInitialState(),
+  (state: StateSchema) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 );
 
-const ArticleDetailsCommentSlice = createSlice({
+const articleDetailsCommentSlice = createSlice({
   name: 'ArticleDetailsComment',
   initialState: commentsAdapter.getInitialState<ArticleDetailsCommentSchema>({
     isLoading: false,
@@ -40,4 +40,4 @@ const ArticleDetailsCommentSlice = createSlice({
   },
 });
 
-export const { reducer: ArticleDetailsCommentReducer } = ArticleDetailsCommentSlice;
+export const { reducer: articleDetailsCommentReducer } = articleDetailsCommentSlice;

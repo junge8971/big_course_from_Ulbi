@@ -1,4 +1,4 @@
-import { ArticleDetails } from 'entity/Article';
+import { ArticleDetails, ArticleList, ArticleView } from 'entity/Article';
 import { CommentList } from 'entity/Comment';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { FC, useCallback, useEffect } from 'react';
@@ -13,19 +13,22 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from 'shared/ui/Button/Button';
-import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
 import { Text } from 'shared/ui/Text/Text';
+import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
 
 import { getArticleDetailsCommentIsLoading } from '../../model/selectors/ArticleDetailsCommentSelectors';
+import { getArticleDetailsRecommendedIsLoading } from '../../model/selectors/articleDetailsRecommendedSelectors';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import {
-  ArticleDetailsCommentReducer,
-  getArticleComments,
-} from '../../model/slice/ArticleDetailsCommentSlice';
+import { fetchRecommendedArticles } from '../../model/services/fetchRecommendedArticles/fetchRecommendedArticles';
+import { articleDetailsPageReducer } from '../../model/slice';
+import { getArticleComments } from '../../model/slice/articleDetailsCommentSlice';
+import { getRecommended } from '../../model/slice/articleDetailsRecommendedSlice';
 import cls from './ArticleDetailsPage.module.scss';
 
-const reducers: ReducersList = { ArticleDetailsComment: ArticleDetailsCommentReducer };
+const reducers: ReducersList = {
+  articleDetailsPage: articleDetailsPageReducer,
+};
 interface ArticleDetailsPageProps {
   className?: string;
 }
@@ -39,6 +42,9 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const comments = useSelector(getArticleComments.selectAll);
   const commentsIsLoading = useSelector(getArticleDetailsCommentIsLoading);
 
+  const recommended = useSelector(getRecommended.selectAll);
+  const recommendedIsLoading = useSelector(getArticleDetailsRecommendedIsLoading);
+
   const onSendComment = useCallback(
     (text: string) => {
       dispatch(addCommentForArticle(text));
@@ -51,6 +57,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
 
   useEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
+    dispatch(fetchRecommendedArticles());
   }, [dispatch, id]);
 
   if (!id) {
@@ -64,6 +71,14 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
       <PageWrapper className={classNames(cls.article, [className])}>
         <Button onClick={onBackToList}>{t('Назад')}</Button>
         <ArticleDetails id={id} />
+        <Text className={cls.commentTitle} title={t('Рекомендуем')} />
+        <ArticleList
+          target="_blank"
+          articles={recommended}
+          isLoading={recommendedIsLoading}
+          view={ArticleView.SMALL}
+          className={cls.recommendedList}
+        />
         <Text className={cls.commentTitle} title={t('Комментарии')} />
         <AddCommentForm onSendComment={onSendComment} />
         <CommentList comments={comments} isLoading={commentsIsLoading} />
