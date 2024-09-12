@@ -5,8 +5,15 @@
   display: flex;
   align-items: center;
   padding: 20px;
-}
 
-.links {
-  margin-left: auto;
+  .appName {
+  }
+
+  .createArticleButton {
+    margin-left: 15px;
+  }
+
+  .links {
+    margin-left: auto;
+  }
 }

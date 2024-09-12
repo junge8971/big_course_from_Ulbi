@@ -5,9 +5,12 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import cls from './Navbar.module.scss';
 
@@ -35,18 +38,27 @@ const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
 
   if (authData) {
     return (
-      <div className={classNames(cls.navbar, [className], {})}>
+      <header className={classNames(cls.navbar, [className], {})}>
+        <Text title={t('Заголовок')} className={cls.appName} theme={TextTheme.inverted} />
+        <AppLink
+          to={RoutePath.articleCreate}
+          className={cls.createArticleButton}
+          theme={AppLinkTheme.SECONDARY}
+        >
+          {t('Создать статью')}
+        </AppLink>
         <div className={cls.links}>
           <Button theme={ButtonTheme.outline} onClick={logout}>
             {t('Выйти')}
           </Button>
         </div>
-      </div>
+      </header>
     );
   }
 
   return (
     <header className={classNames(cls.navbar, [className], {})}>
+      <Text title={t('Заголовок')} className={cls.appName} />
       <div className={cls.links}>
         <Button theme={ButtonTheme.outline} onClick={openModal}>
           {t('Войти')}
