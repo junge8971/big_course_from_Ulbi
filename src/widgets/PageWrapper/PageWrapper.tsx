@@ -12,6 +12,8 @@ import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
 
 import cls from './PageWrapper.module.scss';
 
+export const PAGE_ID = 'PAGE_ID';
+
 interface PageWrapperProps {
   className?: string;
   children: ReactNode;
@@ -56,6 +58,7 @@ export const PageWrapper: FC<PageWrapperProps> = ({
       ref={wrapperRef}
       className={classNames(cls.pageWrapper, [className])}
       onScroll={onScroll}
+      id={PAGE_ID}
     >
       {children}
       {onScrollEnd && <div className={cls.trigger} ref={triggerRef} />}
