@@ -54,7 +54,7 @@ export const PageWrapper: FC<PageWrapperProps> = ({
   }, [scrollPosition]);
 
   return (
-    <section
+    <main
       ref={wrapperRef}
       className={classNames(cls.pageWrapper, [className])}
       onScroll={onScroll}
@@ -62,6 +62,6 @@ export const PageWrapper: FC<PageWrapperProps> = ({
     >
       {children}
       {onScrollEnd && <div className={cls.trigger} ref={triggerRef} />}
-    </section>
+    </main>
   );
 };

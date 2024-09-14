@@ -23,7 +23,7 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
   const toggleSidebar = () => setSideBarOpenStatus((prev) => !prev);
 
   return (
-    <menu
+    <aside
       className={classNames(cls.sideBar, [className], {
         [cls.open]: sideBarOpenStatus,
       })}
@@ -38,7 +38,7 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
         {sideBarOpenStatus ? '<' : '>'}
       </Button>
 
-      <VStack gap="4" className={cls.items}>
+      <VStack role="navigation" gap="4" className={cls.items}>
         {sideBarItems.map((item) => (
           <SideBarItem key={item.path} item={item} isOpen={sideBarOpenStatus} />
         ))}
@@ -48,7 +48,7 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
         <ThemeSwitcher />
         <LanguageSwitcher className={cls.lang} />
       </div>
-    </menu>
+    </aside>
   );
 };
 
