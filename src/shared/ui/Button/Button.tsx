@@ -1,5 +1,10 @@
 import {
-  ButtonHTMLAttributes, FC, ReactNode, memo,
+  ButtonHTMLAttributes,
+  ComponentPropsWithoutRef,
+  FC,
+  ReactNode,
+  forwardRef,
+  memo,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 
@@ -28,26 +33,32 @@ interface ButtonComponentProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-const ButtonComponent: FC<ButtonComponentProps> = ({
-  className,
-  children,
-  theme = ButtonTheme.outline,
-  square,
-  size = ButtonSize.m,
-  disabled,
-  ...props
-}) => (
-  <button
-    disabled={disabled}
-    className={classNames(cls.button, [className, cls[theme]], {
-      [cls.square]: square,
-      [cls[size]]: size,
-      [cls.disabled]: disabled,
-    })}
-    {...props}
-  >
-    {children}
-  </button>
+const ButtonComponent = forwardRef<HTMLButtonElement, ButtonComponentProps>(
+  (
+    {
+      className,
+      children,
+      theme = ButtonTheme.outline,
+      square,
+      size = ButtonSize.m,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => (
+    <button
+      ref={ref}
+      disabled={disabled}
+      className={classNames(cls.button, [className, cls[theme]], {
+        [cls.square]: square,
+        [cls[size]]: size,
+        [cls.disabled]: disabled,
+      })}
+      {...props}
+    >
+      {children}
+    </button>
+  ),
 );
 
 export const Button = memo(ButtonComponent);
