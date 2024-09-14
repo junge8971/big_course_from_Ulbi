@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LanguageSwitcher } from 'shared/ui/LanguageSwitcher';
+import { HStack } from 'shared/ui/Stack/HStack/HStack';
+import { VStack } from 'shared/ui/Stack/VStack/VStack';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 
 import { getSideBarItem } from '../../model/selectors/getSideBarItem';
@@ -36,11 +38,11 @@ const SideBarComponent: FC<SideBarComponentProps> = ({ className }) => {
         {sideBarOpenStatus ? '<' : '>'}
       </Button>
 
-      <div className={cls.items}>
+      <VStack gap="4" className={cls.items}>
         {sideBarItems.map((item) => (
           <SideBarItem key={item.path} item={item} isOpen={sideBarOpenStatus} />
         ))}
-      </div>
+      </VStack>
 
       <div className={cls.switches}>
         <ThemeSwitcher />

@@ -11,9 +11,8 @@ import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { HStack } from 'shared/ui/Stack/HStack/HStack';
 import { Text } from 'shared/ui/Text/Text';
-
-import cls from './ProfilePageHeader.module.scss';
 
 const ProfilePageHeaderComponent: FC = () => {
   const { t } = useTranslation();
@@ -36,41 +35,24 @@ const ProfilePageHeaderComponent: FC = () => {
   }, [dispatch]);
 
   return (
-    <div className={classNames(cls.profilePageHeader)}>
-      <div className={cls.header}>
-        <Text title={t('Профиль')} />
-        {canEdit && (
-          <div className={cls.buttonWrapper}>
-            {readOnly ? (
-              <Button
-                onClick={onEdit}
-                className={cls.editButton}
-                theme={ButtonTheme.outline}
-              >
-                {t('Редактировать')}
-              </Button>
-            ) : (
-              <>
-                <Button
-                  onClick={onCancelEdit}
-                  className={cls.editButton}
-                  theme={ButtonTheme.outlineRed}
-                >
-                  {t('Отменить')}
-                </Button>
-                <Button
-                  onClick={onSave}
-                  className={cls.saveButton}
-                  theme={ButtonTheme.outline}
-                >
-                  {t('Сохранить')}
-                </Button>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
+    <HStack max justify="between">
+      <Text title={t('Профиль')} />
+      {canEdit
+        && (readOnly ? (
+          <Button onClick={onEdit} theme={ButtonTheme.outline}>
+            {t('Редактировать')}
+          </Button>
+        ) : (
+          <HStack gap="8">
+            <Button onClick={onCancelEdit} theme={ButtonTheme.outlineRed}>
+              {t('Отменить')}
+            </Button>
+            <Button onClick={onSave} theme={ButtonTheme.outline}>
+              {t('Сохранить')}
+            </Button>
+          </HStack>
+        ))}
+    </HStack>
   );
 };
 

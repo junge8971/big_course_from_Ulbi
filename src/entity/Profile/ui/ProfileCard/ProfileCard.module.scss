@@ -8,19 +8,6 @@
 
   &.loader,
   &.error {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 300px;
-  }
-
-  .data {
-    .avatarWrapper {
-      display: flex;
-      justify-content: center;
-    }
-    .input {
-      margin-top: 10px;
-    }
   }
 }
