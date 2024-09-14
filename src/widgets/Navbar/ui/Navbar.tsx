@@ -9,7 +9,9 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { DropDown } from 'shared/ui/DropDown/DropDown';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import cls from './Navbar.module.scss';
@@ -47,11 +49,20 @@ const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
         >
           {t('Создать статью')}
         </AppLink>
-        <div className={cls.links}>
-          <Button theme={ButtonTheme.outline} onClick={logout}>
-            {t('Выйти')}
-          </Button>
-        </div>
+        <DropDown
+          className={cls.dropdown}
+          label={<Avatar src={authData?.avatar} size={30} />}
+          items={[
+            {
+              content: t('Профиль'),
+              href: RoutePath.profile + authData.id,
+            },
+            {
+              content: t('Выйти'),
+              onClick: logout,
+            },
+          ]}
+        />
       </header>
     );
   }

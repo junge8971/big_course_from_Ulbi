@@ -1,0 +1,20 @@
+.dropDownItems {
+  z-index: 100;
+  border-radius: 12px;
+}
+
+.dropDownItem {
+  padding: 10px;
+  background: var(--inverted-primary-color);
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+
+  &.focus {
+    background: var(--primary-color);
+    color: var(--inverted-primary-color);
+  }
+  &.disabled {
+    opacity: 0.5;
+  }
+}
