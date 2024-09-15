@@ -1,4 +1,5 @@
 import { ReducersMapObject } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import { FC, ReactNode, memo } from 'react';
 import { Provider } from 'react-redux';
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';

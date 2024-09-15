@@ -4,13 +4,14 @@ import {
 import { AxiosInstance } from 'axios';
 import { articleDetailsSchema } from 'entity/Article';
 import { counterSchema } from 'entity/Counter';
-import { profileSchema } from 'entity/Profile';
 import { userSchema } from 'entity/User';
 import { AddCommentFormSchema } from 'features/AddCommentForm';
 import { loginSchema } from 'features/AuthByUsername';
+import { profileSchema } from 'features/EditableProfileCard';
 import { UiSchema } from 'features/Ui';
 import { articleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { articlesPageSchema } from 'pages/ArticlesPage';
+import { rtkApi } from 'shared/api/rtkApi';
 
 import { createReduxStore } from './store';
 
@@ -18,6 +19,7 @@ export interface StateSchema {
   counter: counterSchema;
   user: userSchema;
   ui: UiSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // async
   login?: loginSchema;

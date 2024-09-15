@@ -1,20 +1,24 @@
-import {
-  getProfileData,
-  getProfileReadOnly,
-  profileActions,
-  updateProfileData,
-} from 'entity/Profile';
 import { getUserAuthData } from 'entity/User';
 import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { HStack } from 'shared/ui/Stack/HStack/HStack';
 import { Text } from 'shared/ui/Text/Text';
 
-const ProfilePageHeaderComponent: FC = () => {
+import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
+import { getProfileReadOnly } from '../../model/selectors/getProfileReadOnly/getProfileReadOnly';
+import { updateProfileData } from '../../model/services/updateProfileData/updateProfileData';
+import { profileActions } from '../../model/slice/profileSlice';
+
+interface EditableProfileCardHeaderComponentProps {
+  className?: string;
+}
+
+const EditableProfileCardHeaderComponent: FC<EditableProfileCardHeaderComponentProps> = ({
+  className,
+}) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
@@ -35,7 +39,7 @@ const ProfilePageHeaderComponent: FC = () => {
   }, [dispatch]);
 
   return (
-    <HStack max justify="between">
+    <HStack className={className} max justify="between">
       <Text title={t('Профиль')} />
       {canEdit
         && (readOnly ? (
@@ -56,4 +60,4 @@ const ProfilePageHeaderComponent: FC = () => {
   );
 };
 
-export const ProfilePageHeader = memo(ProfilePageHeaderComponent);
+export const EditableProfileCardHeader = memo(EditableProfileCardHeaderComponent);

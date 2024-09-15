@@ -34,15 +34,16 @@ const ArticleListComponent: FC<ArticleListComponentProps> = ({
   target,
 }) => {
   const { t } = useTranslation();
+  console.log(articles);
 
   const isBig = view === ArticleView.BIG;
   const itemsPerRow = isBig ? 1 : 3;
-  const rowCount = isBig ? articles.length : Math.ceil(articles.length / itemsPerRow);
+  const rowCount = isBig ? articles?.length : Math.ceil(3 / itemsPerRow);
 
   const rowRenderer = ({ index, key, style }: ListRowProps) => {
     const items = [];
     const fromIndex = index * itemsPerRow;
-    const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
+    const toIndex = Math.min(fromIndex + itemsPerRow, articles?.length);
 
     for (let i = fromIndex; i < toIndex; i += 1) {
       items.push(
@@ -62,7 +63,7 @@ const ArticleListComponent: FC<ArticleListComponentProps> = ({
     );
   };
 
-  if (!isLoading && !articles.length) {
+  if (!isLoading && !articles?.length) {
     return (
       <div className={classNames(cls.articleList, [className, cls[view]])}>
         <Text title={t('Статьи не найдены')} size={TextSize.l} theme={TextTheme.error} />

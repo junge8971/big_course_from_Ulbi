@@ -1,6 +1,7 @@
+import { Profile } from 'entity/Profile';
 import { regexForNumberInString } from 'shared/regex/common';
 
-import { Profile, ValidateProfileError } from '../../types/profile';
+import { ValidateProfileError } from '../../types/editableProfileCardSchema';
 
 export const validateProfileData = (profile?: Profile) => {
   if (!profile) {
