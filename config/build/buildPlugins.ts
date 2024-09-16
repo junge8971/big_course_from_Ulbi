@@ -1,3 +1,4 @@
+import CircularDependencyPlugin from 'circular-dependency-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
@@ -27,6 +28,13 @@ export const buildPlugins = (options: BuildOptions): webpack.WebpackPluginInstan
       new webpack.HotModuleReplacementPlugin(),
       new BundleAnalyzerPlugin({
         openAnalyzer: false,
+      }),
+      new CircularDependencyPlugin({
+        exclude: /a\.js|node_modules/,
+        include: /dir/,
+        failOnError: true,
+        allowAsyncCycles: false,
+        cwd: process.cwd(),
       }),
     );
   }
