@@ -13,7 +13,7 @@ export const AppRouter: FC = () => {
         path={routeProps.path}
         element={
           routeProps.authOnly ? (
-            <RequireAuth>{routeProps.element}</RequireAuth>
+            <RequireAuth roles={routeProps.roles}>{routeProps.element}</RequireAuth>
           ) : (
             routeProps.element
           )

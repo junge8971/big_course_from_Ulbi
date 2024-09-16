@@ -17,7 +17,7 @@ const ArticleRecommendedListComponent: FC<ArticleRecommendedListComponentProps> 
   const { t } = useTranslation();
   const { isLoading, data: articles } = useArticleRecommendedList(3);
 
-  if (isLoading) {
+  if (isLoading || !articles.length) {
     return null;
   }
 

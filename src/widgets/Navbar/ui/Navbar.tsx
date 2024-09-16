@@ -1,4 +1,6 @@
-import { getUserAuthData, userActions } from 'entity/User';
+import {
+  getUserAuthData, isUserAdmin, isUserManager, userActions,
+} from 'entity/User';
 import { LoginModal } from 'features/AuthByUsername';
 import {
   FC, memo, useCallback, useState,
@@ -23,8 +25,13 @@ interface NavbarComponentProps {
 const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
-  const authData = useSelector(getUserAuthData);
   const dispatch = useAppDispatch();
+
+  const authData = useSelector(getUserAuthData);
+  const isAdmin = useSelector(isUserAdmin);
+  const isManager = useSelector(isUserManager);
+
+  const isAdminPanelAvailable = isAdmin || isManager;
 
   const openModal = useCallback(() => {
     setIsAuthModal(true);
@@ -53,6 +60,14 @@ const NavbarComponent: FC<NavbarComponentProps> = ({ className }) => {
           className={cls.dropdown}
           label={<Avatar src={authData?.avatar} size={30} />}
           items={[
+            ...(isAdminPanelAvailable
+              ? [
+                {
+                  content: t('Админка'),
+                  href: RoutePath.adminPanel,
+                },
+              ]
+              : []),
             {
               content: t('Профиль'),
               href: RoutePath.profile + authData.id,

@@ -1,8 +1,6 @@
 import { FC, HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  AutoSizer, List, ListRowProps, WindowScroller,
-} from 'react-virtualized';
+import { List, ListRowProps, WindowScroller } from 'react-virtualized';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize, TextTheme } from 'shared/ui/Text/Text';
 
@@ -34,7 +32,6 @@ const ArticleListComponent: FC<ArticleListComponentProps> = ({
   target,
 }) => {
   const { t } = useTranslation();
-  console.log(articles);
 
   const isBig = view === ArticleView.BIG;
   const itemsPerRow = isBig ? 1 : 3;

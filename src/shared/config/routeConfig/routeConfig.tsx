@@ -1,7 +1,10 @@
+import { UserRoles } from 'entity/User';
 import { AboutPage } from 'pages/AboutPage';
+import { AdminPanelPage } from 'pages/AdminPanelPage';
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
 import { ArticleEditPage } from 'pages/ArticleEditPage';
 import { ArticlesPage } from 'pages/ArticlesPage';
+import { ForbiddenPage } from 'pages/ForbiddenPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
@@ -9,6 +12,7 @@ import { RouteProps } from 'react-router-dom';
 
 export type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
+  roles?: UserRoles[];
 };
 
 export enum AppRoutes {
@@ -19,6 +23,9 @@ export enum AppRoutes {
   articleDetails = 'articleDetails',
   articleCreate = 'articleCreate',
   articleEdit = 'articleEdit',
+  adminPanel = 'adminPanel',
+
+  forbidden = 'forbidden',
 
   // lats
   notFound = 'notFound',
@@ -32,6 +39,9 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.articleDetails]: '/articles/', // + :id
   [AppRoutes.articleCreate]: '/articles/new',
   [AppRoutes.articleEdit]: '/articles/:id/edit',
+  [AppRoutes.adminPanel]: '/adminPanel',
+
+  [AppRoutes.forbidden]: '/forbidden',
 
   // last
   [AppRoutes.notFound]: '*',
@@ -62,14 +72,26 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     authOnly: true,
   },
   [AppRoutes.articleEdit]: {
-    path: `${RoutePath.articleEdit}`,
+    path: RoutePath.articleEdit,
     element: <ArticleEditPage />,
     authOnly: true,
   },
   [AppRoutes.articleCreate]: {
-    path: `${RoutePath.articleCreate}`,
+    path: RoutePath.articleCreate,
     element: <ArticleEditPage />,
     authOnly: true,
+  },
+  [AppRoutes.adminPanel]: {
+    path: RoutePath.adminPanel,
+    element: <AdminPanelPage />,
+    authOnly: true,
+    roles: [UserRoles.ADMIN, UserRoles.MANAGER],
+  },
+
+  [AppRoutes.forbidden]: {
+    path: RoutePath.forbidden,
+    element: <ForbiddenPage />,
+    authOnly: false,
   },
 
   // last
