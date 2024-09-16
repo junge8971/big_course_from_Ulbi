@@ -1,4 +1,4 @@
-export { articleDetailsRecommendedSchema } from './model/types/articleDetailsRecommendedSchema';
-export { ArticleDetailsCommentSchema } from './model/types/ArticleDetailsCommentSchema';
+export type { articleDetailsRecommendedSchema } from './model/types/articleDetailsRecommendedSchema';
+export type { ArticleDetailsCommentSchema } from './model/types/ArticleDetailsCommentSchema';
 export { ArticleDetailsPageAsync as ArticleDetailsPage } from './ui/ArticleDetailsPage/ArticleDetailsPage.async';
-export { articleDetailsPageSchema } from './model/types/index';
+export type { articleDetailsPageSchema } from './model/types/index';

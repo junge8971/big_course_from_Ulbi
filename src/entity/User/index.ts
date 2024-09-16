@@ -5,5 +5,6 @@ export {
   isUserAdmin,
   isUserManager,
 } from './model/selectors/getUserRoles/getUserRoles';
-export { User, userSchema, UserRoles } from './model/types/userSchema';
+export { UserRoles } from './model/types/userSchema';
+export type { User, userSchema } from './model/types/userSchema';
 export { userActions, userReducer } from './model/slice/userSlice';

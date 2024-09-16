@@ -1,7 +1,7 @@
 import { CommentList } from 'entity/Comment';
 import { AddCommentForm } from 'features/AddCommentForm';
 import {
-  FC, memo, useCallback, useEffect,
+  FC, Suspense, memo, useCallback, useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -43,7 +43,9 @@ const ArticleDetailsCommentsComponent: FC<ArticleDetailsCommentsComponentProps> 
   return (
     <div className={classNames('', [className])}>
       <Text title={t('Комментарии')} />
-      <AddCommentForm onSendComment={onSendComment} />
+      <Suspense>
+        <AddCommentForm onSendComment={onSendComment} />
+      </Suspense>
       <CommentList comments={comments} isLoading={commentsIsLoading} />
     </div>
   );
