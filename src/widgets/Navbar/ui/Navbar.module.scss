@@ -11,7 +11,13 @@
   }
 
   .links,
-  .dropdown {
+  .actions {
     margin-left: auto;
+  }
+
+  .notifications {
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
   }
 }
