@@ -7,13 +7,17 @@ import { BuildOptions } from './types/config';
 
 export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
   const babelLoader = {
-    test: /\.m?(js|ts|tsx)$/,
+    test: /\.m?(ts|tsx)$/,
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env'],
-        plugins: ['i18next-extract'],
+        plugins: [
+          'i18next-extract',
+          '@babel/plugin-transform-typescript',
+          '@babel/plugin-transform-runtime',
+        ],
       },
     },
   };
@@ -29,13 +33,13 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
 
   const svgLoader = buildSvgLoader();
 
-  const typescriptLoader = {
-    test: /\.tsx?$/,
-    use: 'ts-loader',
-    exclude: /node_modules/,
-  };
+  // const typescriptLoader = {
+  //   test: /\.tsx?$/,
+  //   use: 'ts-loader',
+  //   exclude: /node_modules/,
+  // };
 
   const cssLoader = buildCssLoader(options.isDev);
 
-  return [babelLoader, typescriptLoader, cssLoader, svgLoader, fileLoader];
+  return [babelLoader, cssLoader, svgLoader, fileLoader];
 };

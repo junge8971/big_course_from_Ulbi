@@ -1,10 +1,5 @@
 import {
-  ButtonHTMLAttributes,
-  ComponentPropsWithoutRef,
-  FC,
-  ReactNode,
-  forwardRef,
-  memo,
+  ButtonHTMLAttributes, ReactNode, forwardRef, memo,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 
